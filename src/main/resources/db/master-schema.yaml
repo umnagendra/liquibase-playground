@@ -1,0 +1,55 @@
+databaseChangeLog:
+  - changeSet:
+      id: 614896A87C3B
+      author: nagendra
+      changes:
+        - createTable:
+            tableName: agent
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: agentPK
+              - column:
+                  name: col1
+                  type: varchar(255)
+              - column:
+                  name: col2
+                  type: datetime
+              - column:
+                  name: col3
+                  type: TINYINT
+              - column:
+                  name: col4
+                  type: jsonb
+              - column:
+                  name: col5
+                  type: varchar(255)
+        - createTable:
+            tableName: contact
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: contactPK
+              - column:
+                  name: col1
+                  type: varchar(255)
+              - column:
+                  name: col2
+                  type: datetime
+              - column:
+                  name: col3
+                  type: TINYINT
+              - column:
+                  name: col4
+                  type: jsonb
+              - column:
+                  name: col5
+                  type: varchar(255)

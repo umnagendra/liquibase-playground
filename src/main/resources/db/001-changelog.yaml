@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: C6E91ED090B3
+      author: nagendra
+      changes:
+        - addColumn:
+            tableName: agent
+            columns:
+              - column:
+                  name: col6_updated
+                  type: text

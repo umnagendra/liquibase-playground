@@ -1,0 +1,6 @@
+databaseChangeLog:
+  - include:
+      file: classpath:db/master-schema.yaml
+
+  - include:
+      file: classpath:db/001-changelog.yaml
