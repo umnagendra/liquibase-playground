@@ -13,6 +13,7 @@ project/boot/
 project/plugins/project/
 **/.bloop
 .bsp/
+project/
 
 # IntelliJ IDEA
 .idea/
