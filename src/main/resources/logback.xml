@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="LOCAL-CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <layout>
+            <pattern>%d %-4r [%thread] %-5level %logger{36}.%M - %msg%n</pattern>
+        </layout>
+    </appender>
+
+    <root level="DEBUG">
+        <appender-ref ref="LOCAL-CONSOLE" />
+    </root>
+</configuration>
