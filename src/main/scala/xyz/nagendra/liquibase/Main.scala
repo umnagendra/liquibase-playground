@@ -1,5 +1,6 @@
 package xyz.nagendra.liquibase
 
+import com.typesafe.scalalogging.LazyLogging
 import liquibase.Liquibase
 import liquibase.database.DatabaseFactory
 import liquibase.database.jvm.JdbcConnection
@@ -18,7 +19,7 @@ trait Constants {
   val CHANGELOG_FILE = "db/db.changelog-master.yaml"
 }
 
-trait MainTrait {
+trait MainTrait extends LazyLogging {
 
   def getJDBCConnection(jdbcUrl: String, user: String, password: String): Connection = {
     val _ = classOf[org.postgresql.Driver] // classload JDBC driver
@@ -26,12 +27,24 @@ trait MainTrait {
   }
 
   def updateSchema(connection: Connection, changelogFilePath: String): Unit = {
-    println(
+    logger.debug(
       s"Updating DB schema from $changelogFilePath onto DB connection to ${connection.getMetaData.getDatabaseProductName}(${connection.getMetaData.getDatabaseProductVersion}) ..."
     )
-    val liquibase = createLiquibase(connection, changelogFilePath)
-    try liquibase.update("")
-    catch {
+    val liquibase    = createLiquibase(connection, changelogFilePath)
+    val buildVersion = "1.0.0"
+    try
+    // STEP 1: Try to rollback to build_version
+    Try(liquibase.rollback(buildVersion, "")) match {
+      case Success(value)                                            => logger.info(s"Rollback successful to $buildVersion")
+      case Failure(e) if e.getMessage.contains("Could not find tag") =>
+        // STEP 2: Try to update to build_version
+        liquibase.update(buildVersion, "")
+        // STEP 3: Tag to build_version
+        liquibase.tag(buildVersion)
+      case Failure(_ @ex) =>
+        logger.error(s"Failed to rollback to $buildVersion", ex)
+        throw ex
+    } catch {
       case e: Exception => throw e
     } finally {
       liquibase.forceReleaseLocks()
@@ -53,8 +66,7 @@ object Main extends App with Constants with MainTrait {
     updateSchema(connection, CHANGELOG_FILE)
   } match {
     case Failure(exception) =>
-      println("Failed to update schema.")
-      exception.printStackTrace()
-    case Success(_) => println("Successfully updated schema!")
+      logger.error("Failed to update schema", exception)
+    case Success(_) => logger.info("Successfully updated schema!")
   }
 }
