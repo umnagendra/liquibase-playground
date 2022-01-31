@@ -26,16 +26,16 @@ trait MainTrait extends LazyLogging {
     DriverManager.getConnection(jdbcUrl, user, password)
   }
 
-  def updateSchema(connection: Connection, changelogFilePath: String): Unit = {
+  def updateSchema(buildVersion: String, connection: Connection, changelogFilePath: String): Unit = {
     logger.debug(
-      s"Updating DB schema from $changelogFilePath onto DB connection to ${connection.getMetaData.getDatabaseProductName}(${connection.getMetaData.getDatabaseProductVersion}) ..."
+      s"Updating DB schema from $changelogFilePath onto DB connection to " +
+        s"${connection.getMetaData.getDatabaseProductName}(${connection.getMetaData.getDatabaseProductVersion}) ..."
     )
-    val liquibase    = createLiquibase(connection, changelogFilePath)
-    val buildVersion = "1.0.0"
+    val liquibase = createLiquibase(connection, changelogFilePath)
     try
     // STEP 1: Try to rollback to build_version
     Try(liquibase.rollback(buildVersion, "")) match {
-      case Success(value)                                            => logger.info(s"Rollback successful to $buildVersion")
+      case Success(_)                                                => logger.info(s"Rollback successful to $buildVersion")
       case Failure(e) if e.getMessage.contains("Could not find tag") =>
         // STEP 2: Try to update to build_version
         liquibase.update(buildVersion, "")
@@ -58,12 +58,21 @@ trait MainTrait extends LazyLogging {
     val resourceAccessor = new ClassLoaderResourceAccessor(classLoader)
     new Liquibase(changelogFilePath, resourceAccessor, database)
   }
+
+  def getBuildVersion(args: Array[String]): String = {
+    if (args.length != 1) {
+      logger.error(s"FATAL: Require one argument: <buildVersion>. Args = $args. ABORTING.")
+      sys.exit(1)
+    }
+    args(0)
+  }
 }
 
 object Main extends App with Constants with MainTrait {
+  val buildVersion           = getBuildVersion(args)
   val connection: Connection = getJDBCConnection(JDBC_URL, DB_USER, DB_PASSWORD)
   Try {
-    updateSchema(connection, CHANGELOG_FILE)
+    updateSchema(buildVersion, connection, CHANGELOG_FILE)
   } match {
     case Failure(exception) =>
       logger.error("Failed to update schema", exception)
