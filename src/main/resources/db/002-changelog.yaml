@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: 45B5C097DACB
+      author: nagendra
+      changes:
+        - addColumn:
+            tableName: agent
+            columns:
+              - column:
+                  name: col7_updated
+                  type: text
+                  constraints:
+                    nullable: false
+                  defaultValue: this is a non-null value
