@@ -7,4 +7,4 @@ databaseChangeLog:
             tableName: agent
             columnName: col6_updated
             constraintName: col6_updated_not_null_constraint
-            defaultNullValue: Hari
+            defaultNullValue: this was null earlier

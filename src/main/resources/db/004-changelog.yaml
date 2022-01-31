@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: DA81867E16D2
+      author: nagendra
+      changes:
+        - modifyDataType:
+            columnName: col3
+            newDataType: bigint
+            tableName: agent
+
+##
+# NOTES:
+#   - works well for simple "widening" of datatypes (tinyint -> bigint, varchar(64) -> varchar(255) etc.)
+#
+#   - simple "narrowing" of datatypes (bigint -> smallint, varchar(256) -> varchar(64) etc.) also works,
+#     but ONLY as long as the data in all cells of this column can fit into the narrowed datatype
+#
+#   - automatic casting and conversion of some datatypes is allowed (int -> text, uuid -> varchar(64) etc.),
+#     but most of these are one-way only (text -> int does not work)
+#
+#   - rollback will almost always fail where the conversion is non-trivial with liquibase.exception.RollbackImpossibleException
