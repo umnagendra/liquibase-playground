@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: B97158432BC8
+      author: sudhir
+      changes:
+        - dropColumn:
+            tableName: agent
+            columnName: col6_updated
