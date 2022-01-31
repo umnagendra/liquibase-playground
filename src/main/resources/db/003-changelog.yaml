@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: B2E1E8F1B6BC
+      author: nagendra
+      changes:
+        - addNotNullConstraint:
+            tableName: agent
+            columnName: col6_updated
+            constraintName: col6_updated_not_null_constraint
+            defaultNullValue: Hari
