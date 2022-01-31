@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: 7670B45CBCE0
+      author: nagendra
+      changes:
+        - createTable:
+            tableName: agent_skill
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: agent_skill_PK
+              - column:
+                  name: col1
+                  type: varchar(255)
+              - column:
+                  name: col2
+                  type: timestamptz
+              - column:
+                  name: col3
+                  type: TINYINT
+              - column:
+                  name: col4
+                  type: varchar(255)
+              - column:
+                  name: col5
+                  type: varchar(255)
+
+##
+# NOTES:
+#   - Say we want to create this table, as well as load sample data into it.
+#     While you can rollback a 'createTable' change, you cannot rollback a 'loadData' if that is part of the same changeSet.
+#
+#   - Basically, if any part of a changeSet is "impossible" to rollback, the whole changeSet cannot be rolled-back.

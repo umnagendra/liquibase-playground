@@ -18,9 +18,9 @@ databaseChangeLog:
   - include: # [1.4.0] Change datatype of existing column in existing table
       file: classpath:db/004-changelog.yaml
 
-#  - include: # [1.5.0] Add new table
-#      file: classpath:db/005-changelog.yaml
-#
+  - include: # [1.5.0] Add new table
+      file: classpath:db/005-changelog.yaml
+
 #  - include: # [1.6.0] Remove existing column in existing table
 #      file: classpath:db/006-changelog.yaml
 #
