@@ -18,13 +18,13 @@ databaseChangeLog:
                   type: varchar(255)
               - column:
                   name: col2
-                  type: datetime
+                  type: timestamptz
               - column:
                   name: col3
                   type: TINYINT
               - column:
                   name: col4
-                  type: jsonb
+                  type: varchar(255)
               - column:
                   name: col5
                   type: varchar(255)
@@ -43,13 +43,13 @@ databaseChangeLog:
                   type: varchar(255)
               - column:
                   name: col2
-                  type: datetime
+                  type: timestamptz
               - column:
                   name: col3
                   type: TINYINT
               - column:
                   name: col4
-                  type: jsonb
+                  type: varchar(255)
               - column:
                   name: col5
                   type: varchar(255)
