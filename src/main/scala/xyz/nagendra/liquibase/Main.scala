@@ -76,6 +76,7 @@ object Main extends App with Constants with MainTrait {
   } match {
     case Failure(exception) =>
       logger.error("Failed to update schema", exception)
+      sys.exit(1)
     case Success(_) => logger.info("Successfully updated schema!")
   }
 }
