@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - changeSet:
+      id: loadAgentData
+      author: nagendra
+      changes:
+        - loadData:
+            tableName: agent
+            file: classpath:db/seeddata/agent.csv
+            encoding: UTF-8
+            separator: ','
+
+  - changeSet:
+        id: loadContactData
+        author: nagendra
+        changes:
+        - loadData:
+            tableName: contact
+            file: classpath:db/seeddata/contact.csv
+            encoding: UTF-8
+            separator: ','
