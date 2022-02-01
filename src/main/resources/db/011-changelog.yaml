@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: A111C9825115
+      author: nagendra
+      changes:
+        - dropIndex:
+            indexName: col1_col2_index
+            tableName: agent
+        - createIndex:
+            indexName: col1_col2_col3_index
+            tableName: agent
+            columns:
+              - column:
+                  name: col1
+                  descending: true
+              - column:
+                  name: col2
+                  descending: false
+              - column:
+                  name: col3
+                  descending: true
