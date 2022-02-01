@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0CDA7F1C2A30
+      author: nagendra
+      changes:
+        - customChange:
+            class: xyz.nagendra.liquibase.custom.ExampleCustomSchemaChange

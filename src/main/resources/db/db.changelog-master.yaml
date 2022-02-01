@@ -12,7 +12,7 @@ databaseChangeLog:
   - include: # [1.2.0] New non-nullable column in existing table (with default value)
       file: classpath:db/002-changelog.yaml
 
-  - include: # [1.3.0] Make existing nullable column in existing table as non-nullable (with default values for already null cells)
+  - include: # [1.3.0] Add constraint - Make existing nullable column in existing table as non-nullable (with default values for already null cells)
       file: classpath:db/003-changelog.yaml
 
   - include: # [1.4.0] Change datatype of existing column in existing table
@@ -24,20 +24,20 @@ databaseChangeLog:
   - include: # [1.6.0] Remove existing column in existing table
       file: classpath:db/006-changelog.yaml
 
-#  - include: # [1.7.0] New constraints + modifications to existing constraints
-#      file: classpath:db/007-changelog.yaml
-#
-#  - include: # [1.8.0] Create new functions / stored-procedures
-#      file: classpath:db/008-changelog.yaml
-#
-#  - include: # [1.9.0] Update / replace existing functions / stored-procedures
-#      file: classpath:db/009-changelog.yaml
-#
-#  - include: # [1.10.0] Create new indexes
-#      file: classpath:db/010-changelog.yaml
-#
-#  - include: # [1.11.0] Update existing indexes
-#      file: classpath:db/011-changelog.yaml
-#
-#  - include: # [1.12.0] Custom transformations and update of existing data
-#      file: classpath:db/012-changelog.yaml
+  - include: # [1.7.0] Modifications to existing constraints
+      file: classpath:db/007-changelog.yaml
+
+  - include: # [1.8.0] Create / replace functions
+      file: classpath:db/008-changelog.yaml
+
+  - include: # [1.9.0] Create / replace stored procedures
+      file: classpath:db/009-changelog.yaml
+
+  - include: # [1.10.0] Create new indexes
+      file: classpath:db/010-changelog.yaml
+
+  - include: # [1.11.0] Update existing indexes
+      file: classpath:db/011-changelog.yaml
+
+  - include: # [1.12.0] Custom transformations and update of existing data
+      file: classpath:db/012-changelog.yaml
