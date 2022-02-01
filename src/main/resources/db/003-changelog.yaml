@@ -8,3 +8,7 @@ databaseChangeLog:
             columnName: col6_updated
             constraintName: col6_updated_not_null_constraint
             defaultNullValue: this was null earlier
+        - addUniqueConstraint:
+            tableName: agent
+            columnNames: col1
+            constraintName: col1_unique_constraint

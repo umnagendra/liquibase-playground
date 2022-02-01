@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: E9E88B2139C2
+      author: nagendra
+      changes:
+        - dropUniqueConstraint:
+            tableName: agent
+            constraintName: col1_unique_constraint
+        - addUniqueConstraint:
+            tableName: agent
+            columnNames: col1
+            constraintName: col1_unique_constraint_updated
