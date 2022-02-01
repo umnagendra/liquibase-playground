@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: 4F2D979A91C1
+      author: nagendra
+      changes:
+        - sqlFile:
+            splitStatements: false
+            path: classpath:db/functions/get_count_of_agents.sql
