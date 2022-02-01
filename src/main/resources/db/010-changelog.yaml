@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: 7C72F624BFB3
+      author: nagendra
+      changes:
+        - createIndex:
+            indexName: col1_col2_index
+            tableName: agent
+            columns:
+              - column:
+                  name: col1
+                  descending: true
+              - column:
+                  name: col2
+                  descending: false
