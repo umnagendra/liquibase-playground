@@ -5,4 +5,11 @@ databaseChangeLog:
       changes:
         - dropColumn:
             tableName: agent
-            columnName: col6_updated
+            columnName: col5
+
+##
+# NOTES
+#   - We cannot rollback a 'dropColumn' in any of these cases:
+#       a) column with non-null constraint
+#       b) nullable column without default value
+#       c) nullable column with default value

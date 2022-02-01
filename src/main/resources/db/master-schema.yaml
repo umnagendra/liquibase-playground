@@ -28,6 +28,7 @@ databaseChangeLog:
               - column:
                   name: col5
                   type: varchar(255)
+                  defaultValue: default value for col5
         - createTable:
             tableName: contact
             columns:
